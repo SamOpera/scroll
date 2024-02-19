@@ -1,0 +1,72 @@
+body {
+  background-image: url('files/section_1_bg_mobile.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: Arial, sans-serif;
+  margin: 10px;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin-top: 10px;
+  margin-left: 225px;
+
+  padding: 20px;
+  text-align: center;
+  background-color: rgb(247, 197, 104);
+  color: rgb(5, 5, 5);
+  position: relative;
+  border-radius: 10px; /* Add border radius for a smoother look */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+.logo {
+  width: 160px;
+  height: auto;
+  margin-top: 15px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.content {
+  margin-bottom: 40px; /* Reduce margin for content */
+}
+
+button#connect-wallet-button {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: rgb(8, 8, 8);
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Add transition for smoother hover effect */
+}
+
+button#connect-wallet-button:hover {
+  background-color: rgb(107, 103, 101);
+}
+
+.main-paragraph {
+  padding: 15px 0; /* Uniform padding for better spacing */
+}
+
+.contact-info {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.social-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.contact-info{
+  margin-top: 300px;
+}
