@@ -8,9 +8,9 @@ body {
 }
 
 .container {
-  max-width: 780px; /* Adjusted max-width to accommodate the margins */
+  max-width: 780px;
   margin: 20px auto;
-  margin-buttom: 20px;
+  margin-bottom: 20px;
   padding: 20px;
   text-align: center;
   background-color: rgb(247, 197, 104);
@@ -64,15 +64,25 @@ button#connect-wallet-button:hover {
   height: 30px;
   margin-right: 7px;
   margin-top: 4px;
-  
-  background-color: rgba(0, 0, 0, 0.3); /* Blending the background */
-  border-radius: 50%; /* Make it circular */
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
 }
 
 @media (max-width: 768px) {
   .container {
-    margin-left: 18px; /* Adjusted margin */
-    margin-right: 18px; /* Adjusted margin */
+    margin-left: 18px;
+    margin-right: 18px;
     padding: 20px 10px;
   }
 
+  .contact-info {
+    position: relative; /* Change position to relative */
+    bottom: auto; /* Reset bottom position */
+    left: auto; /* Reset left position */
+    margin-top: 20px; /* Add margin to top */
+  }
+
+  .social-icon {
+    margin-right: 10px; /* Adjust margin-right for better spacing */
+  }
+}
