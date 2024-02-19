@@ -19,7 +19,7 @@ body {
 }
 
 .logo {
-  width: 160px;
+  width: 100px;
   height: auto;
   margin-top: 15px;
 }
@@ -56,6 +56,7 @@ button#connect-wallet-button:hover {
   position: absolute;
   bottom: 20px;
   left: 20px;
+  
 }
 
 .social-icon {
