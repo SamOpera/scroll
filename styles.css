@@ -2,8 +2,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background: url('files/section_1_bg_mobile.svg') no-repeat center center fixed;
-  background-size: cover;
+  background: url('files/section_1_bg_mobile.svg') repeat;
 }
 
 .container {
@@ -12,7 +11,7 @@ body {
   margin-bottom: 20px;
   padding: 20px;
   text-align: center;
-  background-color: rgb(247, 197, 104);
+  background-color: rgba(247, 197, 104, 0.9); /* Adjusted background color with transparency */
   color: rgb(5, 5, 5);
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
