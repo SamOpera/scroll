@@ -61,16 +61,17 @@ button#connect-wallet-button:hover {
 .social-icon {
   width: 30px;
   height: 30px;
-  margin-right: 10px;
+  margin-right: 7px;
+  margin-top: 4px;
+  
   background-color: rgba(0, 0, 0, 0.3); /* Blending the background */
   border-radius: 50%; /* Make it circular */
 }
 
 @media (max-width: 768px) {
   .container {
-    margin-left: 10px; /* Adjusted margin */
-    margin-right: 10px; /* Adjusted margin */
+    margin-left: 18px; /* Adjusted margin */
+    margin-right: 18px; /* Adjusted margin */
     padding: 20px 10px;
   }
 
-  .contact-info
