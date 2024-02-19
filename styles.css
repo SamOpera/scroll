@@ -54,7 +54,7 @@ button#connect-wallet-button:hover {
 }
 
 .contact-info {
-  position: static;
+  position: absolute;
   bottom: 20px;
   left: 20px;
 }
