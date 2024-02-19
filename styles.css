@@ -3,22 +3,18 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   font-family: Arial, sans-serif;
-  margin: 10px;
+  margin: 0;
   padding: 0;
 }
 
 .container {
-  max-width: 800px;
-  margin-top: 10px;
-  margin-left: 225px;
-
+  max-width: 100%; /* Adjusted to be full width */
   padding: 20px;
   text-align: center;
   background-color: rgb(247, 197, 104);
   color: rgb(5, 5, 5);
-  position: relative;
-  border-radius: 10px; /* Add border radius for a smoother look */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  border-radius: 10px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
@@ -33,7 +29,7 @@ h1 {
 }
 
 .content {
-  margin-bottom: 40px; /* Reduce margin for content */
+  margin-bottom: 20px; 
 }
 
 button#connect-wallet-button {
@@ -44,7 +40,7 @@ button#connect-wallet-button {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s; /* Add transition for smoother hover effect */
+  transition: background-color 0.3s;
 }
 
 button#connect-wallet-button:hover {
@@ -52,21 +48,18 @@ button#connect-wallet-button:hover {
 }
 
 .main-paragraph {
-  padding: 15px 0; /* Uniform padding for better spacing */
+  padding: 15px 0; 
 }
 
 .contact-info {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
+  display: flex; /* Use flexbox for alignment */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  margin-top: 20px; /* Adjusted for spacing */
 }
 
 .social-icon {
   width: 30px;
   height: 30px;
-  margin-right: 10px;
-}
-
-.contact-info{
-  margin-top: 300px;
+  margin: 0 10px; /* Adjusted for spacing */
 }
