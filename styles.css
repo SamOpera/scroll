@@ -2,29 +2,31 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-}
-
-header {
-  background-color: #f7c568;
-  text-align: center;
-  padding: 20px;
+  background-color: #f9f9f9;
 }
 
 .container {
-  max-width: 800px;
-  margin: 20px auto;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 0 20px;
 }
 
+header, footer {
+  background-color: #f7c568;
+  padding: 20px 0;
+}
+
 .logo {
-  width: 160px;
+  width: 120px;
   height: auto;
-  margin-bottom: 10px;
+  display: block;
+  margin: 0 auto;
 }
 
 h1 {
   font-size: 24px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  text-align: center;
 }
 
 .content {
@@ -43,6 +45,8 @@ button#connect-wallet-button {
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s;
+  display: block;
+  margin: 20px auto;
 }
 
 button#connect-wallet-button:hover {
@@ -51,18 +55,20 @@ button#connect-wallet-button:hover {
 }
 
 .popup {
+  background-color: #f7c568;
+  color: #333;
+  padding: 10px 20px;
+  border-radius: 5px;
   margin-top: 10px;
+  text-align: center;
 }
 
 footer {
-  background-color: #f7c568;
   text-align: center;
-  padding: 20px;
 }
 
 .contact-info {
-  display: flex;
-  justify-content: center;
+  margin-top: 20px;
 }
 
 .social-icon {
