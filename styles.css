@@ -67,7 +67,8 @@ button#connect-wallet-button:hover {
 
 @media (max-width: 768px) {
   .container {
-    margin-left: 0;
+    margin-left: 5px;
+    margin-right: 5px;
     padding: 20px 10px;
   }
 
