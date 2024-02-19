@@ -57,6 +57,7 @@ button#connect-wallet-button:hover {
   position: absolute;
   bottom: 20px;
   left: 20px;
+  margin-left: 20px;
 }
 
 .social-icon {
