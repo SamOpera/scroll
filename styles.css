@@ -10,6 +10,7 @@ body {
 .container {
   max-width: 780px; /* Adjusted max-width to accommodate the margins */
   margin: 20px auto;
+  margin-buttom: 20px;
   padding: 20px;
   text-align: center;
   background-color: rgb(247, 197, 104);
