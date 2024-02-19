@@ -1,67 +1,72 @@
 body {
+  background-image: url('files/section_1_bg_mobile.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
   font-family: Arial, sans-serif;
-  margin: 0;
+  margin: 10px;
   padding: 0;
-  background-color: #f9f9f9;
 }
 
 .container {
   max-width: 800px;
-  margin: 0 auto;
+  margin-top: 10px;
+  margin-left: 225px;
+
   padding: 20px;
   text-align: center;
-}
-
-header {
-  background-color: #f7c568;
-  padding: 20px 0;
+  background-color: rgb(247, 197, 104);
+  color: rgb(5, 5, 5);
+  position: relative;
+  border-radius: 10px; /* Add border radius for a smoother look */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
 }
 
 .logo {
-  width: 100px;
+  width: 160px;
   height: auto;
+  margin-top: 15px;
 }
 
 h1 {
   font-size: 24px;
-  margin: 10px 0;
+  margin-bottom: 20px;
 }
 
-main {
-  padding: 20px 0;
-}
-
-p {
-  line-height: 1.6;
+.content {
+  margin-bottom: 40px; /* Reduce margin for content */
 }
 
 button#connect-wallet-button {
-  background-color: #f7c568;
-  color: #333;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: rgb(8, 8, 8);
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
-  margin-top: 20px;
+  transition: background-color 0.3s; /* Add transition for smoother hover effect */
 }
 
 button#connect-wallet-button:hover {
-  background-color: #6b6765;
-  color: #fff;
+  background-color: rgb(107, 103, 101);
 }
 
-.popup {
-  margin-top: 10px;
+.main-paragraph {
+  padding: 15px 0; /* Uniform padding for better spacing */
 }
 
-footer {
-  background-color: #f7c568;
-  padding: 20px 0;
+.contact-info {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
 }
 
-.social-icons img {
+.social-icon {
   width: 30px;
-  height: auto;
-  margin: 0 10px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.contact-info{
+  margin-top: 300px;
 }
