@@ -1,26 +1,20 @@
+/* General Styles */
 body {
-  background-image: url('files/section_1_bg_mobile.svg');
-  background-size: cover;
-  background-repeat: no-repeat;
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
 }
 
 .container {
-  max-width: 100%; /* Adjusted to be full width */
+  max-width: 800px;
+  margin: 0 auto;
   padding: 20px;
   text-align: center;
-  background-color: rgb(247, 197, 104);
-  color: rgb(5, 5, 5);
-  border-radius: 10px; 
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
   width: 160px;
   height: auto;
-  margin-top: 15px;
 }
 
 h1 {
@@ -28,8 +22,8 @@ h1 {
   margin-bottom: 20px;
 }
 
-.content {
-  margin-bottom: 20px; 
+.main-paragraph {
+  margin-bottom: 20px;
 }
 
 button#connect-wallet-button {
@@ -47,19 +41,20 @@ button#connect-wallet-button:hover {
   background-color: rgb(107, 103, 101);
 }
 
-.main-paragraph {
-  padding: 15px 0; 
+/* Footer Styles */
+footer {
+  background-color: rgb(247, 197, 104);
+  color: rgb(5, 5, 5);
+  padding: 20px 0;
 }
 
 .contact-info {
-  display: flex; /* Use flexbox for alignment */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  margin-top: 20px; /* Adjusted for spacing */
+  display: flex;
+  justify-content: center;
 }
 
 .social-icon {
   width: 30px;
   height: 30px;
-  margin: 0 10px; /* Adjusted for spacing */
+  margin: 0 10px;
 }
