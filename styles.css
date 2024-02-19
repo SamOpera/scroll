@@ -1,4 +1,4 @@
-body {
+.body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -57,13 +57,13 @@ button#connect-wallet-button:hover {
   position: absolute;
   bottom: 20px;
   left: 20px;
-  margin-left: 20px;
 }
 
 .social-icon {
   width: 30px;
   height: 30px;
-  margin-right: 7px;
+  margin-right: 5px; /* Reduce space between social icons */
+  margin-left: 5px; /* Add margin to the left of social icons */
   margin-top: 4px;
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 50%;
@@ -77,13 +77,13 @@ button#connect-wallet-button:hover {
   }
 
   .contact-info {
-    position: relative; /* Change position to relative */
-    bottom: auto; /* Reset bottom position */
-    left: auto; /* Reset left position */
-    margin-top: 20px; /* Add margin to top */
+    position: relative;
+    bottom: auto;
+    left: auto;
+    margin-top: 20px;
   }
 
   .social-icon {
-    margin-right: 10px; /* Adjust margin-right for better spacing */
+    margin-right: 3px; /* Further reduce space between social icons */
   }
 }
