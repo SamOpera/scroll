@@ -1,12 +1,13 @@
-window.addEventListener('load', async () => {
-    const connectWalletButton = document.getElementById('connect-wallet-button');
-    const popup = document.getElementById('popup');
-    let isWalletConnected = false;
-    let connectedWalletAddress = '';
-    let allocatedTokens = 0;
-  
-    connectWalletButton.addEventListener('click', async () => {
-        // Your wallet connection logic goes here
-    });
+document.addEventListener('DOMContentLoaded', () => {
+  const connectWalletButton = document.getElementById('connect-wallet-button');
+  const popup = document.getElementById('popup');
+
+  connectWalletButton.addEventListener('click', () => {
+    // Replace this with your wallet connection logic
+    // For demonstration purposes, just showing a popup message
+    popup.innerText = 'Connecting to wallet...';
+    setTimeout(() => {
+      popup.innerText = 'Wallet connected!';
+    }, 2000);
   });
-  
+});
