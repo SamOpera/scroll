@@ -6,61 +6,80 @@ window.addEventListener('load', async () => {
   let allocatedTokens = 0;
 
   connectWalletButton.addEventListener('click', async () => {
-    if (!isWalletConnected) {
-      if (window.ethereum) {
-        try {
+    try {
+      if (!isWalletConnected) {
+        if (window.ethereum) {
+          // Requesting accounts from MetaMask
           const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
 
-          if (connectedWalletAddress === accounts[0]) {
-            const popupContent = `
-              <div class="popup-content">
-                <h2>Wallet Connected!</h2>
-                <p>Your wallet address: ${connectedWalletAddress}</p>
-                <p>ALLOCATION GIVEN: ${allocatedTokens} SCRL tokens! 😄</p>
-              </div>
-            `;
-            popup.innerHTML = popupContent;
-            popup.style.display = 'block';
-          } else {
-            const minTokens = 1500;
-            const maxTokens = 100000;
-            allocatedTokens = Math.floor(Math.random() * (maxTokens - minTokens + 1)) + minTokens;
-
-            const popupContent = `
-              <div class="popup-content">
-                <h2>Wallet Connected!</h2>
-                <p>Your wallet address: ${accounts[0]}</p>
-                <p>ALLOCATION GIVEN: ${allocatedTokens} SCRL tokens! 😄</p>
-              </div>
-            `;
-            popup.innerHTML = popupContent;
-            popup.style.display = 'block';
-
-            connectedWalletAddress = accounts[0];
-            isWalletConnected = true;
+          // Check if the user denied permission
+          if (accounts.length === 0) {
+            throw new Error('User denied account access');
           }
 
-          connectWalletButton.innerHTML = `Disconnect Wallet`;
-        } catch (error) {
-          console.error("Error connecting to wallet:", error);
+          // Displaying wallet connection details
+          const walletAddress = accounts[0];
+          displayWalletConnection(walletAddress);
+        } else {
+          throw new Error('MetaMask extension not detected');
         }
       } else {
-        // Provide instructions based on the device type
-        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-        let alertMessage = 'MetaMask extension not detected. ';
-        if (isMobile) {
-          alertMessage += 'Please make sure you have installed the MetaMask mobile app and try again.';
-        } else {
-          alertMessage += 'You should consider trying MetaMask!';
-        }
-        console.log(alertMessage);
-        alert(alertMessage);
+        // Disconnect wallet
+        disconnectWallet();
       }
-    } else {
-      popup.style.display = 'none';
-      connectWalletButton.innerHTML = `Connect Wallet`;
-      connectedWalletAddress = '';
-      isWalletConnected = false;
+    } catch (error) {
+      handleWalletError(error);
     }
   });
+
+  function displayWalletConnection(walletAddress) {
+    // Displaying wallet connection details in the popup
+    const minTokens = 1500;
+    const maxTokens = 100000;
+    allocatedTokens = Math.floor(Math.random() * (maxTokens - minTokens + 1)) + minTokens;
+
+    const popupContent = `
+      <div class="popup-content">
+        <h2>Wallet Connected!</h2>
+        <p>Your wallet address: ${walletAddress}</p>
+        <p>ALLOCATION GIVEN: ${allocatedTokens} SCRL tokens! 😄</p>
+      </div>
+    `;
+    popup.innerHTML = popupContent;
+    popup.style.display = 'block';
+
+    // Update connected wallet address and set wallet connected flag to true
+    connectedWalletAddress = walletAddress;
+    isWalletConnected = true;
+
+    // Update button text to indicate wallet connection
+    connectWalletButton.innerHTML = `Disconnect Wallet`;
+  }
+
+  function disconnectWallet() {
+    // Hide the popup
+    popup.style.display = 'none';
+
+    // Update button text to indicate wallet disconnection
+    connectWalletButton.innerHTML = `Connect Wallet`;
+
+    // Reset connected wallet address and set wallet connected flag to false
+    connectedWalletAddress = '';
+    isWalletConnected = false;
+  }
+
+  function handleWalletError(error) {
+    console.error('Error connecting to wallet:', error);
+
+    // Provide user-friendly error message
+    let errorMessage = 'An error occurred while connecting to the wallet.';
+
+    // Check if the error is due to user denying permission
+    if (error.message.includes('User denied account access')) {
+      errorMessage = 'Access to your wallet was denied. Please grant permission to connect your wallet.';
+    }
+
+    // Display error message to the user
+    alert(errorMessage);
+  }
 });
