@@ -45,7 +45,7 @@ window.addEventListener('load', async () => {
           console.error("Error connecting to wallet:", error);
         }
       } else {
-        // Update the alert message to provide specific instructions for mobile users
+        // Provide instructions based on the device type
         const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
         let alertMessage = 'MetaMask extension not detected. ';
         if (isMobile) {
