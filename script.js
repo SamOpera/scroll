@@ -8,57 +8,8 @@ window.addEventListener('load', async () => {
     connectWalletButton.addEventListener('click', async () => {
         if (!isWalletConnected) {
             try {
-                let accounts;
-
-                // Check if MetaMask is installed
-                if (window.ethereum) {
-                    accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                } else {
-                    // Check if Trust Wallet is installed
-                    if (window.ethereum?.isTrust) {
-                        // Create a connector for Trust Wallet
-                        const connector = new WalletConnect({
-                            bridge: "https://bridge.walletconnect.org",
-                            qrcodeModal: QRCodeModal,
-                        });
-
-                        // Check if connection is already established
-                        if (!connector.connected) {
-                            // create new session
-                            connector.createSession();
-                        }
-
-                        // Subscribe to connection events
-                        connector.on("connect", (error, payload) => {
-                            if (error) {
-                                throw error;
-                            }
-                            // Get provided accounts and chainId
-                            const { accounts, chainId } = payload.params[0];
-                        });
-
-                        connector.on("session_update", (error, payload) => {
-                            if (error) {
-                                throw error;
-                            }
-                            // Get updated accounts and chainId
-                            const { accounts, chainId } = payload.params[0];
-                        });
-
-                        connector.on("disconnect", (error, payload) => {
-                            if (error) {
-                                throw error;
-                            }
-                            // Delete connector
-                        });
-
-                        // Prompt the user to connect with Trust Wallet
-                        // For demonstration, you can use QRCodeModal to display the QR code
-                        QRCodeModal.open(connector.uri);
-                    } else {
-                        throw new Error('No Ethereum provider detected. Please install an EVM-compatible wallet.');
-                    }
-                }
+                // Request accounts directly from MetaMask
+                const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
 
                 // Generate random tokens for demonstration
                 const minTokens = 1500;
@@ -82,7 +33,7 @@ window.addEventListener('load', async () => {
                 // Update button text to indicate wallet connection
                 connectWalletButton.innerHTML = `Disconnect Wallet`;
             } catch (error) {
-                console.error("Error connecting to wallet:", error);
+                console.error("Error connecting to MetaMask:", error);
             }
         } else {
             // Disconnect wallet
