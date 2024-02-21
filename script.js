@@ -1,26 +1,30 @@
 window.addEventListener('load', async () => {
     const connectWalletButton = document.getElementById('connect-wallet-button');
-    const popup = document.getElementById('popup');
     const disconnectWalletButton = document.getElementById('disconnect-wallet-button');
+    const popup = document.getElementById('popup');
 
     connectWalletButton.addEventListener('click', async () => {
         if (window.ethereum) {
             try {
-                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                await window.ethereum.request({ method: 'eth_requestAccounts' });
 
-                const minTokens = 1500;
-                const maxTokens = 100000;
-                const allocatedTokens = Math.floor(Math.random() * (maxTokens - minTokens + 1)) + minTokens;
+                // Display wallet connection details
+                const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+                if (accounts.length > 0) {
+                    const minTokens = 1500;
+                    const maxTokens = 100000;
+                    const allocatedTokens = Math.floor(Math.random() * (maxTokens - minTokens + 1)) + minTokens;
 
-                const popupContent = `
-                    <div class="popup-content">
-                        <h2>Wallet Connected!</h2>
-                        <p>Your wallet address: ${accounts[0]}</p>
-                        <p>ALLOCATION GIVEN: ${allocatedTokens} SCRL tokens! 😄</p>
-                    </div>
-                `;
-                popup.innerHTML = popupContent;
-                popup.style.display = 'block';
+                    const popupContent = `
+                        <div class="popup-content">
+                            <h2>Wallet Connected!</h2>
+                            <p>Your wallet address: ${accounts[0]}</p>
+                            <p>ALLOCATION GIVEN: ${allocatedTokens} SCRL tokens! 😄</p>
+                        </div>
+                    `;
+                    popup.innerHTML = popupContent;
+                    popup.style.display = 'block';
+                }
             } catch (error) {
                 console.error("Error connecting to wallet:", error);
             }
@@ -33,7 +37,7 @@ window.addEventListener('load', async () => {
     disconnectWalletButton.addEventListener('click', async () => {
         if (window.ethereum && window.ethereum.isConnected()) {
             try {
-                await window.ethereum.request({ method: 'eth_requestAccounts' });
+                await window.ethereum.request({ method: 'wallet_requestPermissions', params: [{ eth_accounts: {} }] });
             } catch (error) {
                 console.error("Error disconnecting wallet:", error);
             }
