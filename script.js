@@ -1,6 +1,7 @@
 window.addEventListener('load', async () => {
     const connectWalletButton = document.getElementById('connect-wallet-button');
     const popup = document.getElementById('popup');
+    const disconnectWalletButton = document.getElementById('disconnect-wallet-button');
 
     connectWalletButton.addEventListener('click', async () => {
         if (window.ethereum) {
@@ -26,6 +27,16 @@ window.addEventListener('load', async () => {
         } else {
             console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
             alert('Non-Ethereum browser detected. You should consider trying MetaMask!');
+        }
+    });
+
+    disconnectWalletButton.addEventListener('click', async () => {
+        if (window.ethereum && window.ethereum.isConnected()) {
+            try {
+                await window.ethereum.request({ method: 'eth_requestAccounts' });
+            } catch (error) {
+                console.error("Error disconnecting wallet:", error);
+            }
         }
     });
 });
