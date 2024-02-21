@@ -10,11 +10,11 @@ window.addEventListener('load', async () => {
             try {
                 let accounts;
 
-                // Check for Ethereum provider (MetaMask)
+                // Check if MetaMask is installed
                 if (window.ethereum) {
                     accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
                 }
-                // Check for other EVM-compatible mobile wallets
+                // Check if another EVM-compatible wallet is available
                 else if (window.web3 && window.web3.currentProvider) {
                     accounts = await window.web3.currentProvider.request({ method: 'eth_requestAccounts' });
                 }
