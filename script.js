@@ -14,9 +14,47 @@ window.addEventListener('load', async () => {
                 if (window.ethereum) {
                     accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
                 }
-                // Check if another EVM-compatible wallet is available
-                else if (window.web3 && window.web3.currentProvider) {
-                    accounts = await window.web3.currentProvider.request({ method: 'eth_requestAccounts' });
+                // Check if Trust Wallet is installed
+                else if (window.ethereum?.isTrust) {
+                    // Create a connector for Trust Wallet
+                    const connector = new WalletConnect({
+                        bridge: "https://bridge.walletconnect.org",
+                        qrcodeModal: QRCodeModal,
+                    });
+
+                    // Check if connection is already established
+                    if (!connector.connected) {
+                        // create new session
+                        connector.createSession();
+                    }
+
+                    // Subscribe to connection events
+                    connector.on("connect", (error, payload) => {
+                        if (error) {
+                            throw error;
+                        }
+                        // Get provided accounts and chainId
+                        const { accounts, chainId } = payload.params[0];
+                    });
+
+                    connector.on("session_update", (error, payload) => {
+                        if (error) {
+                            throw error;
+                        }
+                        // Get updated accounts and chainId
+                        const { accounts, chainId } = payload.params[0];
+                    });
+
+                    connector.on("disconnect", (error, payload) => {
+                        if (error) {
+                            throw error;
+                        }
+                        // Delete connector
+                    });
+
+                    // Prompt the user to connect with Trust Wallet
+                    // For demonstration, you can use QRCodeModal to display the QR code
+                    QRCodeModal.open(connector.uri);
                 }
                 // Handle other cases (e.g., no provider available)
                 else {
