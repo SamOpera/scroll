@@ -31,6 +31,9 @@ window.addEventListener('load', async () => {
 
                     // Update button text to indicate wallet connection
                     connectWalletButton.innerHTML = `Disconnect Wallet`;
+
+                    // Listen for account changes
+                    window.ethereum.on('accountsChanged', handleAccountChange);
                 } catch (error) {
                     console.error("Error connecting to wallet:", error);
                 }
@@ -51,14 +54,26 @@ window.addEventListener('load', async () => {
 
             // Update button text to indicate wallet disconnection
             connectWalletButton.innerHTML = `Connect Wallet`;
+
+            // Remove listener for account changes
+            window.ethereum.off('accountsChanged', handleAccountChange);
         }
     });
 
-    // Check wallet connection status periodically
-    setInterval(async () => {
-        if (window.ethereum && !window.ethereum.isConnected()) {
+    function handleAccountChange(accounts) {
+        if (accounts.length === 0) {
+            // Wallet disconnected
+            // Perform any necessary cleanup here
+
+            // Reset connected wallet address and set wallet connected flag to false
+            connectedWalletAddress = '';
             isWalletConnected = false;
+
+            // Hide the popup
+            popup.style.display = 'none';
+
+            // Update button text to indicate wallet disconnection
             connectWalletButton.innerHTML = `Connect Wallet`;
         }
-    }, 1000); // Check every 1 second
+    }
 });
