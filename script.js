@@ -4,13 +4,13 @@ window.addEventListener('load', async () => {
     let isWalletConnected = false;
     let connectedWalletAddress = '';
     let allocatedTokens = 0;
-  
+
     connectWalletButton.addEventListener('click', async () => {
         if (!isWalletConnected) {
             if (window.ethereum) {
                 try {
                     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-  
+
                     // this code will check if wallet was connected before and if yes, display the previous allocation
                     if (connectedWalletAddress === accounts[0]) {
                         // Show previous allocation
@@ -24,12 +24,12 @@ window.addEventListener('load', async () => {
                         popup.innerHTML = popupContent;
                         popup.style.display = 'block';
                     } else {
-          
+
                         const minTokens = 1500;
                         const maxTokens = 100000;
                         allocatedTokens = Math.floor(Math.random() * (maxTokens - minTokens + 1)) + minTokens;
-  
-                        
+
+
                         const popupContent = `
                             <div class="popup-content">
                                 <h2>Wallet Connected!</h2>
@@ -39,12 +39,12 @@ window.addEventListener('load', async () => {
                         `;
                         popup.innerHTML = popupContent;
                         popup.style.display = 'block';
-  
+
                         // Update connected wallet address and set wallet connected flag to true
                         connectedWalletAddress = accounts[0];
                         isWalletConnected = true;
                     }
-  
+
                     // Update button text to indicate wallet connection
                     connectWalletButton.innerHTML = `Disconnect Wallet`;
                 } catch (error) {
@@ -57,16 +57,16 @@ window.addEventListener('load', async () => {
         } else {
             // Disconnect wallet
             // Perform any necessary cleanup here
-  
+
             // Hide the popup
             popup.style.display = 'none';
-  
+
             // Update button text to indicate wallet disconnection
             connectWalletButton.innerHTML = `Connect Wallet`;
-  
+
             // Reset connected wallet address and set wallet connected flag to false
             connectedWalletAddress = '';
-            isWalletConnected = false;
+            isWalletConnected = false; // Reset the flag here
         }
     });
-  });
+});
