@@ -6,7 +6,7 @@ window.addEventListener('load', async () => {
     let allocatedTokens = 0;
 
     connectWalletButton.addEventListener('click', async () => {
-        if (!isWalletConnected || !window.ethereum.isConnected()) {
+        if (!isWalletConnected) {
             if (window.ethereum) {
                 try {
                     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -53,4 +53,12 @@ window.addEventListener('load', async () => {
             connectWalletButton.innerHTML = `Connect Wallet`;
         }
     });
+
+    // Check wallet connection status periodically
+    setInterval(async () => {
+        if (window.ethereum && !window.ethereum.isConnected()) {
+            isWalletConnected = false;
+            connectWalletButton.innerHTML = `Connect Wallet`;
+        }
+    }, 1000); // Check every 1 second
 });
