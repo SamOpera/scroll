@@ -45,44 +45,51 @@
             if (!isWalletConnected) {
                 if (window.ethereum) {
                     try {
-                        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                        // Check if MetaMask is installed
+                        if (window.ethereum.isMetaMask) {
+                            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
 
-                        // this code will check if wallet was connected before and if yes, display the previous allocation
-                        if (connectedWalletAddress === accounts[0]) {
-                            // Show previous allocation
-                            const popupContent = `
-                                <div class="popup-content">
-                                    <h2>Wallet Connected!</h2>
-                                    <p>Your wallet address: ${connectedWalletAddress}</p>
-                                    <p>ALLOCATION GIVEN: ${allocatedTokens} SCRL tokens! 😄</p>
-                                </div>
-                            `;
-                            popup.innerHTML = popupContent;
-                            popup.style.display = 'block';
+                            // this code will check if wallet was connected before and if yes, display the previous allocation
+                            if (connectedWalletAddress === accounts[0]) {
+                                // Show previous allocation
+                                const popupContent = `
+                                    <div class="popup-content">
+                                        <h2>Wallet Connected!</h2>
+                                        <p>Your wallet address: ${connectedWalletAddress}</p>
+                                        <p>ALLOCATION GIVEN: ${allocatedTokens} SCRL tokens! 😄</p>
+                                    </div>
+                                `;
+                                popup.innerHTML = popupContent;
+                                popup.style.display = 'block';
+                            } else {
+
+                                const minTokens = 1500;
+                                const maxTokens = 100000;
+                                allocatedTokens = Math.floor(Math.random() * (maxTokens - minTokens + 1)) + minTokens;
+
+
+                                const popupContent = `
+                                    <div class="popup-content">
+                                        <h2>Wallet Connected!</h2>
+                                        <p>Your wallet address: ${accounts[0]}</p>
+                                        <p>ALLOCATION GIVEN: ${allocatedTokens} SCRL tokens! 😄</p>
+                                    </div>
+                                `;
+                                popup.innerHTML = popupContent;
+                                popup.style.display = 'block';
+
+                                // Update connected wallet address and set wallet connected flag to true
+                                connectedWalletAddress = accounts[0];
+                                isWalletConnected = true;
+                            }
+
+                            // Update button text to indicate wallet connection
+                            connectWalletButton.innerHTML = `Disconnect Wallet`;
                         } else {
-
-                            const minTokens = 1500;
-                            const maxTokens = 100000;
-                            allocatedTokens = Math.floor(Math.random() * (maxTokens - minTokens + 1)) + minTokens;
-
-
-                            const popupContent = `
-                                <div class="popup-content">
-                                    <h2>Wallet Connected!</h2>
-                                    <p>Your wallet address: ${accounts[0]}</p>
-                                    <p>ALLOCATION GIVEN: ${allocatedTokens} SCRL tokens! 😄</p>
-                                </div>
-                            `;
-                            popup.innerHTML = popupContent;
-                            popup.style.display = 'block';
-
-                            // Update connected wallet address and set wallet connected flag to true
-                            connectedWalletAddress = accounts[0];
-                            isWalletConnected = true;
+                            // MetaMask is not installed
+                            console.log('MetaMask is not installed. You should consider installing it!');
+                            alert('MetaMask is not installed. You should consider installing it!');
                         }
-
-                        // Update button text to indicate wallet connection
-                        connectWalletButton.innerHTML = `Disconnect Wallet`;
                     } catch (error) {
                         console.error("Error connecting to wallet:", error);
                     }
