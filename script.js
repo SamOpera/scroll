@@ -8,20 +8,8 @@ window.addEventListener('load', async () => {
     connectWalletButton.addEventListener('click', async () => {
         if (!isWalletConnected) {
             try {
-                let accounts;
-
-                // Check if MetaMask is installed
-                if (window.ethereum) {
-                    accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                }
-                // Check if another EVM-compatible wallet is available
-                else if (window.web3 && window.web3.currentProvider) {
-                    accounts = await window.web3.currentProvider.request({ method: 'eth_requestAccounts' });
-                }
-                // Handle other cases (e.g., no provider available)
-                else {
-                    throw new Error('No Ethereum provider detected. Please install an EVM-compatible wallet.');
-                }
+                // Request accounts directly from MetaMask
+                const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
 
                 // Generate random tokens for demonstration
                 const minTokens = 1500;
@@ -45,7 +33,7 @@ window.addEventListener('load', async () => {
                 // Update button text to indicate wallet connection
                 connectWalletButton.innerHTML = `Disconnect Wallet`;
             } catch (error) {
-                console.error("Error connecting to wallet:", error);
+                console.error("Error connecting to MetaMask:", error);
             }
         } else {
             // Disconnect wallet
