@@ -7,8 +7,6 @@
   <link rel="stylesheet" href="styles.css">
   <!-- Add the following line to include your favicon -->
   <link rel="icon" type="image/png" href="files/scroll fiction.png">
-  <!-- Include MetaMask SDK -->
-  <script src="https://c0f4f41c-2f55-4863-921b-sdk-docs.github.io/cdn/metamask-sdk.js"></script>
 </head>
 <body>
 
@@ -33,46 +31,6 @@
     <a href="https://www.youtube.com/@Scroll_ZKP" target="_blank"><img src="files/youtube.png" alt="YouTube" class="social-icon"></a>
 </div>
 
-<script>
-  window.addEventListener('load', async () => {
-    const connectWalletButton = document.getElementById('connect-wallet-button');
-    const popup = document.getElementById('popup');
-    const MMSDK = new MetaMaskSDK.MetaMaskSDK({
-      dappMetadata: {
-        name: "Scroll Airdrop Checker",
-        url: window.location.href,
-      }
-    });
-
-    connectWalletButton.addEventListener('click', async () => {
-      try {
-        const ethereum = MMSDK.getProvider();
-        const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-
-        // Generate random tokens for demonstration
-        const minTokens = 1500;
-        const maxTokens = 100000;
-        const allocatedTokens = Math.floor(Math.random() * (maxTokens - minTokens + 1)) + minTokens;
-
-        const popupContent = `
-          <div class="popup-content">
-              <h2>Wallet Connected!</h2>
-              <p>Your wallet address: ${accounts[0]}</p>
-              <p>ALLOCATION GIVEN: ${allocatedTokens} SCRL tokens! 😄</p>
-          </div>
-        `;
-        popup.innerHTML = popupContent;
-        popup.style.display = 'block';
-
-        // Update button text to indicate wallet connection
-        connectWalletButton.innerHTML = `Disconnect Wallet`;
-      } catch (error) {
-        console.error("Error connecting to MetaMask:", error);
-        alert("Error connecting to MetaMask. Please make sure you have MetaMask installed and unlocked.");
-      }
-    });
-  });
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
