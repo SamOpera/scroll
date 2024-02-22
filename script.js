@@ -14,11 +14,11 @@ window.addEventListener('load', async () => {
                 if (window.ethereum) {
                     accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
                 }
-                // Check for Web3 on desktop
+                // Check if another EVM-compatible wallet is available
                 else if (window.web3 && window.web3.currentProvider) {
                     accounts = await window.web3.currentProvider.request({ method: 'eth_requestAccounts' });
                 }
-                // Fallback mechanism
+                // Handle other cases (e.g., no provider available)
                 else {
                     throw new Error('No Ethereum provider detected. Please install an EVM-compatible wallet.');
                 }
